@@ -58,3 +58,11 @@ Certifique-se de ter o Python 3.9 ou superior instalado em sua máquina.
 ```bash
 git clone [https://github.com/SEU_USUARIO/forja-arcana.git](https://github.com/SEU_USUARIO/forja-arcana.git)
 cd forja-arcana
+
+
+🔮 Futuras Implementações
+[ ] Substituição dos círculos cromáticos da UI por ícones gráficos de giz realizados à mão.
+
+[ ] Vinculação lógica das curvas de deflexão (~IN e ~OUT) com o consumo exponencial de Mana e saves de desvantagem.
+
+[ ] Banco de dados para catalogação de combinações lendas criadas pelos players (Grimório Pessoal).
