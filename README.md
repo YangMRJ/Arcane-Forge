@@ -50,16 +50,6 @@ Uma mecânica inspirada no sistema *High Risk, High Reward*. Cinco satélites me
 
 ---
 
-## ⚙️ Pré-requisitos e Instalação
-
-Certifique-se de ter o Python 3.9 ou superior instalado em sua máquina.
-
-1. Clone este repositório:
-```bash
-git clone [https://github.com/SEU_USUARIO/forja-arcana.git](https://github.com/SEU_USUARIO/forja-arcana.git)
-cd forja-arcana
-
-
 🔮 Futuras Implementações
 [ ] Substituição dos círculos cromáticos da UI por ícones gráficos de giz realizados à mão.
 
