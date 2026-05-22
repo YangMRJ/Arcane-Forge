@@ -1,0 +1,9 @@
+{
+    "music_vol": 0.05,
+    "sfx_vol": 1.0,
+    "resolution": [
+        1600,
+        900
+    ],
+    "resolution_index": 2
+}
