@@ -1,4 +1,4 @@
-# 🔮 Forja Arcana (Arcane Forge)
+# 🔮 Forja Arcana (Arcane Forge) — Pygame Port
 
 ![Pygame](https://img.shields.io/badge/Pygame-2.6.1-blueviolet?style=for-the-badge&logo=python)
 ![Python](https://img.shields.io/badge/Python-3.9+-blue?style=for-the-badge&logo=python)
@@ -15,6 +15,7 @@ O sistema divide a criação de magias em duas esferas lógicas complementares:
 ### 1. O Sigilo Primordial (Círculo Externo Central)
 * **A Essência do Feitiço:** Uma lousa geométrica rígida com 24 nós de ancoragem fixos espaçados a exatos 15°.
 * **Regras de Estabilidade:** Aceita apenas **linhas retas**. O motor matemático analisa em tempo real os ângulos internos gerados nas quinas e a fricção molecular (cruzamentos de linhas).
+* **Mapeamento Multi-direcional:** Os ângulos são calculados dinamicamente em qualquer nó que possua duas ou mais linhas conectadas, fornecendo feedback visual instantâneo durante o desenho.
 * **Comportamento Base:** * Pontas afiadas/agudas geram magias do tipo **Projétil/Raio**.
   * Formas quadradas/regulares moldam **Barreiras/Escudos**.
   * Cruzamentos excessivos adicionam caos, tornando o feitiço **Instável** ou de **Área de Efeito (AoE)**.
@@ -23,15 +24,17 @@ O sistema divide a criação de magias em duas esferas lógicas complementares:
 Uma mecânica inspirada no sistema *High Risk, High Reward*. Cinco satélites menores de 8 nós orbitam o núcleo, funcionando como placas de argila ou páginas de grimório para modificadores de efeito.
 * **Geometria Estável (Linhas Retas):** Quando os glifos internos possuem apenas quinas retas, os satélites mostram os ângulos internos em tempo real e emitem um brilho estático ressonante com a cor do elemento ativo.
 * **Geometria Selvagem (Linhas Curvas):** Utilizando **Curvas de Bézier Quadráticas**, o jogador pode segurar `SHIFT` ou usar a ferramenta **Moldar** para clicar no meio de uma linha e puxá-la com o mouse, deformando o giz. 
-* **Efeito Aurora Boreal:** Ao entortar a geometria útil, os ângulos se dissipam e o satélite ganha uma **Aurora Boreal procedural pulsante**, aplicando modificadores selvagens de alta potência com chances críticas de anomalias mágicas.
+* **Física da Placa de Argila:** Há um limite rígido de curvatura. Não é possível puxar a linha de giz para fora da área útil do satélite (o ponto de controle trava na borda), garantindo que a inscrição mágica se mantenha contida.
+* **Efeito Aurora Boreal:** Ao entortar a geometria, os ângulos exatos se dissipam (sendo substituídos por graus aproximados de deflexão `~IN` ou `~OUT`) e o satélite ganha uma **Aurora Boreal procedural pulsante**, aplicando modificadores selvagens de alta potência com chances críticas de anomalias mágicas.
 
 ---
 
-## 🎨 Imersão Visual e Feedback Tátil
+## 🎨 Imersão Visual, Áudio e Feedback Tátil
 
 * **Motor de Giz Procedural (Chalk Physics):** As linhas não são traçadas instantaneamente. O giz possui uma velocidade de arrasto e é renderizado através de centenas de grãos com variação de opacidade e dispersão angular (*jitter*), mimetizando a textura real de lousa.
 * **Poeira de Giz Física (Falling Dust):** Durante o traçado das linhas, floquinhos de poeira de giz se desprendem e caem pela tela em tempo real, sofrendo efeitos simulados de gravidade e dissipação de opacidade (*fade out*).
 * **Controle de Órbita Dinâmica:** Os satélites rotacionam em torno do núcleo. O jogador possui um interruptor funcional para congelar a órbita, permitindo a inscrição precisa de glifos, que passam a girar junto com o sistema mecânico assim que a rotação é reativada.
+* **Sonorização Integrada:** Efeitos de raspar de giz na lousa ao desenhar, cliques de interface e música de fundo arcana. Um Menu de Configurações permite o ajuste individual dos volumes e da resolução da tela.
 
 ---
 
@@ -39,20 +42,24 @@ Uma mecânica inspirada no sistema *High Risk, High Reward*. Cinco satélites me
 
 | Comando | Ação no Jogo |
 | :--- | :--- |
-| `Botão Esquerdo do Mouse (LMB)` | Marcar pontos nos nós focados (Modo Desenhar). |
+| `Botão Esquerdo do Mouse (LMB)` | Marcar pontos nos nós focados (Modo Desenhar) / Ajustar sliders (Menu). |
 | `SHIFT` ou `CTRL` + `LMB` | Clicar e arrastar uma linha nos círculos menores para curvá-la (Modo Moldar). |
 | `Botão Direito do Mouse (RMB)` | Limpar instantaneamente toda a geometria do círculo focado. |
 | `Botão [Parar/Girar Órbita]` | Congela os modificadores para desenhar ou reativa a dança orbital. |
 | `Botão [Ferramenta: Desenhar/Moldar]`| Alterna permanentemente o comportamento do clique útil do mouse. |
-| `Teclas [DELETE] / [BACKSPACE]` | Desfaz o último nó inserido. |
+| `Ícone de Engrenagem (Canto Superior)`| Abre o Menu de Configurações (Áudio e Resolução). |
+| `Teclas [DELETE] / [BACKSPACE]` | Desfaz a última linha desenhada no núcleo. |
 | `Tecla [ENTER]` | Conjura a fórmula mágica atual, gerando a explosão de partículas e o relatório. |
-| `Tecla [ESC]` | Limpa e reinicia todos os círculos da Forja de uma vez. |
+| `Tecla [ESC]` | Fecha o Menu de Configurações / Limpa e reinicia todos os círculos da Forja de uma vez. |
 
 ---
 
 🔮 Futuras Implementações
-[ ] Substituição dos círculos cromáticos da UI por ícones gráficos de giz realizados à mão.
 
-[ ] Vinculação lógica das curvas de deflexão (~IN e ~OUT) com o consumo exponencial de Mana e saves de desvantagem.
+    [ ] Substituição dos círculos cromáticos da UI por ícones gráficos de giz realizados à mão.
 
-[ ] Banco de dados para catalogação de combinações lendas criadas pelos players (Grimório Pessoal).
+    [ ] Vinculação lógica das curvas de deflexão (~IN e ~OUT) com o consumo exponencial de Mana e saves de desvantagem.
+
+    [ ] Banco de dados para catalogação de combinações e "lendas" criadas pelos players (Grimório Pessoal salvável).
+
+Desenvolvido artesanalmente combinando álgebra linear, geometria analítica e forças místicas insondáveis.
